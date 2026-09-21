@@ -5,5 +5,8 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   // Keep edits visible when the project lives on a Windows drive mounted in WSL.
-  server: { watch: { usePolling: true, interval: 300 } },
+  server: {
+    watch: { usePolling: true, interval: 300 },
+    proxy: { "/api": "http://127.0.0.1:3001" },
+  },
 });

@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import SocialProof from "./components/SocialProof";
+
 import Services from "./components/Services";
 import Process from "./components/Process";
 import Projects from "./components/Projects";

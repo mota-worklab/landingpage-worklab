@@ -2,10 +2,11 @@ import {
   ArrowUpRight,
   CheckCircle2,
   Clock3,
+  LoaderCircle,
   MessageCircle,
   X,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { Eyebrow, Reveal } from "./ui";
 import ContactChannels from "./ContactChannels";
@@ -21,6 +22,9 @@ const serviceOptions = [
 export default function Contact() {
   const [service, setService] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+  const pending = useRef(false);
   useEffect(() => {
     const readHash = () => {
       if (!window.location.hash.startsWith("#contato?")) return;
@@ -39,9 +43,37 @@ export default function Contact() {
     window.addEventListener("hashchange", readHash);
     return () => window.removeEventListener("hashchange", readHash);
   }, []);
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+    if (pending.current) return;
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    pending.current = true;
+    setSending(true);
+    setSubmitted(false);
+    setError("");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(data)),
+        signal: AbortSignal.timeout(20000),
+      });
+      const result = await response.json();
+      if (!response.ok || result.success !== true) {
+        throw new Error(typeof result.error === "string" ? result.error : "Não foi possível enviar. Tente novamente ou fale pelo WhatsApp.");
+      }
+      form.reset();
+      setService("");
+      setSubmitted(true);
+    } catch (cause) {
+      setError(cause instanceof Error && cause.name === "Error"
+        ? cause.message
+        : "Não conseguimos confirmar o envio. Tente novamente ou fale pelo WhatsApp.");
+    } finally {
+      pending.current = false;
+      setSending(false);
+    }
   }
   return (
     <section id="contato" className="contact-section section-anchor">
@@ -91,9 +123,15 @@ export default function Contact() {
           </div>
         </Reveal>
         <Reveal>
-          <form className="contact-form" onSubmit={onSubmit}>
+          <form className="contact-form" onSubmit={onSubmit} aria-busy={sending}>
             <h3>Seu próximo passo começa aqui.</h3>
             <p>Preencha os campos e conte sobre o projeto.</p>
+            <fieldset disabled={sending} className="contact-fields">
+            <div className="contact-honeypot" aria-hidden="true">
+              <label htmlFor="website">Deixe este campo vazio
+                <input id="website" name="website" tabIndex={-1} autoComplete="off" />
+              </label>
+            </div>
             <div className="form-row">
               <label htmlFor="name">
                 Seu nome
@@ -103,6 +141,7 @@ export default function Contact() {
                   autoComplete="name"
                   placeholder="Como podemos te chamar?"
                   required
+                  minLength={2}
                   maxLength={100}
                 />
               </label>
@@ -150,18 +189,19 @@ export default function Contact() {
                 maxLength={4000}
               />
             </label>
-            <button type="submit" className="button button-dark w-full">
-              Vamos conversar
-              <ArrowUpRight size={18} />
+            <button type="submit" className="button button-dark w-full" disabled={sending}>
+              {sending ? "Enviando…" : "Vamos conversar"}
+              {sending ? <LoaderCircle size={18} className="animate-spin" aria-hidden="true" /> : <ArrowUpRight size={18} aria-hidden="true" />}
             </button>
+            </fieldset>
+            {error && <p role="alert" className="form-error">{error}</p>}
             {submitted && (
               <div role="status" className="form-success">
                 <CheckCircle2 size={21} />
                 <div>
-                  <strong>Tudo certo com o preenchimento!</strong>
+                  <strong>Mensagem enviada!</strong>
                   <p>
-                    Esta é uma demonstração. Sua mensagem não foi enviada. O
-                    contato pode ser feito pelo WhatsApp disponível nesta seção.
+                    Obrigado pelo contato. Vamos responder pelo e-mail informado.
                   </p>
                 </div>
                 <button

@@ -18,7 +18,7 @@ npm run build   # verifica TypeScript e gera dist/
 npm run preview # serve o build para revisão
 ```
 
-Publique a pasta `dist/` em qualquer hospedagem estática. Não há rotas de servidor ou variáveis de ambiente obrigatórias.
+O frontend é estático, mas o formulário precisa da rota de servidor `/api/contact`. O projeto inclui uma função para Vercel em `api/contact.js`; publicar somente `dist/` não habilita o envio.
 
 ## Estrutura
 
@@ -35,7 +35,22 @@ Menu mobile com estado anunciado e fechamento por Escape; FAQ com elementos nati
 
 Marcas, projetos, métricas dos projetos e depoimentos são exemplos explicitamente identificados. Substitua-os por referências verificadas antes da publicação comercial.
 
-O formulário é **demonstrativo**: valida os campos e mostra um aviso, sem enviar nem armazenar dados. Para receber leads, conecte `onSubmit` em `src/components/Contact.tsx` a um backend ou serviço de formulários. Adicione estados de envio, erro e sucesso real e uma política de privacidade compatível com a integração escolhida.
+O formulário envia nome, e-mail, serviço e mensagem ao Resend pelo servidor. A resposta de sucesso aparece somente após o provedor aceitar o e-mail (isso não garante entrega na caixa de entrada). Em falhas, os campos são preservados.
+
+## Configurar o Resend
+
+1. Crie uma chave de envio no Resend e verifique o domínio remetente.
+2. Copie `.env.example` para `.env.local` e preencha `RESEND_API_KEY`, `CONTACT_FROM_EMAIL` e `CONTACT_TO_EMAIL`. O remetente pode usar o formato `mota worklab <site@seu-dominio.com>`; o destinatário deve ser um único e-mail da equipe.
+3. Execute `npm run dev:api` em um terminal e `npm run dev` em outro. O Vite encaminha `/api` para o servidor local na porta 3001. `npm run preview` serve apenas o frontend.
+4. Na Vercel, importe o projeto como Vite, configure as mesmas três variáveis no ambiente de publicação e faça o deploy. A pasta `api/` é publicada como função de servidor. Para outra hospedagem, adapte a rota a partir de `server/contact.js`.
+
+Não coloque a chave no React, em variáveis com prefixo `VITE_` ou no Git. `.env.local` já é ignorado. O visitante é usado como `reply_to`, permitindo responder diretamente ao contato; remetente e destinatário são controlados pelo servidor.
+
+Há validação no servidor, limite de tamanho, bloqueio de POST cross-site de navegadores e campo honeypot. O honeypot é uma proteção básica: antes de expor o endpoint publicamente, configure limitação de requisições no provedor de hospedagem para reduzir abuso. O formulário não inclui armazenamento em banco de dados.
+
+Execute `npm test` para verificar validação, configuração ausente e respostas do Resend com requisições simuladas, sem enviar e-mails. Para testar a entrega real, configure as credenciais e envie pelo formulário.
+
+Referências: [API de envio do Resend](https://resend.com/docs/api-reference/emails/send-email) e [funções Node.js da Vercel](https://vercel.com/docs/functions/runtimes/node-js).
 
 WhatsApp **(75) 99891-5461** e Instagram **@motaworklab** estão disponíveis na seção de contato e no rodapé. Os links são centralizados em `src/components/ContactChannels.tsx`.
 

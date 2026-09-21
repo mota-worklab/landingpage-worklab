@@ -1590,6 +1590,29 @@ h2 {
   border-radius: 13px;
   box-shadow: 0 12px 32px #3d506c08;
 }
+.contact-fields {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.contact-honeypot {
+  display: none;
+}
+.contact-form .form-error {
+  margin: 16px 0 0;
+  padding: 12px;
+  color: #9b1c1c;
+  background: #fff1f1;
+  border: 1px solid #efb4b4;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.contact-form button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
 .contact-form h3 {
   font-size: 19px;
   letter-spacing: -0.6px;
