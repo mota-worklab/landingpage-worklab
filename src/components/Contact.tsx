@@ -127,72 +127,72 @@ export default function Contact() {
             <h3>Seu próximo passo começa aqui.</h3>
             <p>Preencha os campos e conte sobre o projeto.</p>
             <fieldset disabled={sending} className="contact-fields">
-            <div className="contact-honeypot" aria-hidden="true">
-              <label htmlFor="website">Deixe este campo vazio
-                <input id="website" name="website" tabIndex={-1} autoComplete="off" />
-              </label>
-            </div>
-            <div className="form-row">
-              <label htmlFor="name">
-                Seu nome
-                <input
-                  id="name"
-                  name="name"
-                  autoComplete="name"
-                  placeholder="Como podemos te chamar?"
+              <div className="contact-honeypot" aria-hidden="true">
+                <label htmlFor="website">Deixe este campo vazio
+                  <input id="website" name="website" tabIndex={-1} autoComplete="off" />
+                </label>
+              </div>
+              <div className="form-row">
+                <label htmlFor="name">
+                  Seu nome
+                  <input
+                    id="name"
+                    name="name"
+                    autoComplete="name"
+                    placeholder="Como podemos te chamar?"
+                    required
+                    minLength={2}
+                    maxLength={100}
+                  />
+                </label>
+                <label htmlFor="email">
+                  E-mail profissional
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="voce@empresa.com"
+                    required
+                    maxLength={200}
+                  />
+                </label>
+              </div>
+              <label htmlFor="service">
+                O que vamos construir?
+                <select
+                  id="service"
+                  name="service"
+                  value={service}
+                  onChange={(event) => setService(event.target.value)}
                   required
-                  minLength={2}
-                  maxLength={100}
-                />
-              </label>
-              <label htmlFor="email">
-                E-mail profissional
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  placeholder="voce@empresa.com"
-                  required
-                  maxLength={200}
-                />
-              </label>
-            </div>
-            <label htmlFor="service">
-              O que vamos construir?
-              <select
-                id="service"
-                name="service"
-                value={service}
-                onChange={(event) => setService(event.target.value)}
-                required
-              >
-                <option value="" disabled>
-                  Selecione o tipo de projeto
-                </option>
-                {serviceOptions.map(([value, label]) => (
-                  <option key={value} value={value}>
-                    {label}
+                >
+                  <option value="" disabled>
+                    Selecione o tipo de projeto
                   </option>
-                ))}
-              </select>
-            </label>
-            <label htmlFor="message">
-              Conte um pouco sobre sua ideia
-              <textarea
-                id="message"
-                name="message"
-                placeholder="Qual problema você quer resolver? O que já tem em mente?"
-                rows={4}
-                required
-                minLength={10}
-                maxLength={4000}
-              />
-            </label>
-            <button type="submit" className="button button-dark w-full" disabled={sending}>
-              {sending ? "Enviando…" : "Vamos conversar"}
-              {sending ? <LoaderCircle size={18} className="animate-spin" aria-hidden="true" /> : <ArrowUpRight size={18} aria-hidden="true" />}
-            </button>
+                  {serviceOptions.map(([value, label]) => (
+                    <option key={value} value={value}>
+                      {label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label htmlFor="message">
+                Conte um pouco sobre sua ideia
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Qual problema você quer resolver? O que já tem em mente?"
+                  rows={4}
+                  required
+                  minLength={10}
+                  maxLength={4000}
+                />
+              </label>
+              <button type="submit" className="button button-dark w-full" disabled={sending}>
+                {sending ? "Enviando…" : "Vamos conversar"}
+                {sending ? <LoaderCircle size={18} className="animate-spin" aria-hidden="true" /> : <ArrowUpRight size={18} aria-hidden="true" />}
+              </button>
             </fieldset>
             {error && <p role="alert" className="form-error">{error}</p>}
             {submitted && (
