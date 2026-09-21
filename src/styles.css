@@ -2202,30 +2202,37 @@ textarea {
     padding-top: 32px;
   }
   .hero-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0;
   }
   .hero-copy {
+    min-width: 0;
     padding-bottom: 0;
   }
   .hero-badge {
-    font-size: 9px;
+    max-width: 100%;
+    font-size: 10px;
+    line-height: 1.5;
     margin-bottom: 24px;
   }
+  .hero-badge > span {
+    flex-shrink: 0;
+  }
   .hero h1 {
-    font-size: 66px;
-    line-height: 1.03;
-    letter-spacing: -4px;
+    font-size: clamp(28px, 8.8vw, 64px);
+    line-height: 1.1;
+    letter-spacing: -0.045em;
   }
   .hero-copy > p {
-    font-size: 13px;
-    line-height: 1.9;
+    font-size: 15px;
+    line-height: 1.7;
     margin-top: 28px;
     max-width: 420px;
   }
   .hero-actions {
+    flex-wrap: wrap;
     margin-top: 24px;
-    gap: 26px;
+    gap: 12px 24px;
   }
   .hero-actions .button {
     font-size: 12px;
@@ -2234,10 +2241,17 @@ textarea {
   }
   .hero-actions .text-button {
     font-size: 12px;
+    min-height: 48px;
   }
   .hero-note {
-    font-size: 9px;
+    font-size: 11px;
+    line-height: 1.6;
+    align-items: flex-start;
     margin-top: 20px;
+  }
+  .hero-note .note-icon {
+    flex-shrink: 0;
+    padding-top: 2px;
   }
   .hero-art {
     height: 450px;
@@ -2248,6 +2262,7 @@ textarea {
     left: 5px;
     right: 5px;
     top: 62px;
+    transform: none;
   }
   .dashboard-top {
     height: 28px;
@@ -2317,15 +2332,17 @@ textarea {
     gap: 5px;
   }
   .hero-bottom {
+    flex-wrap: wrap;
+    gap: 12px;
     padding-block: 18px;
     margin-top: 20px;
   }
   .hero-bottom > span:first-child {
-    font-size: 6px;
+    font-size: 9px;
     letter-spacing: 0.8px;
   }
   .hero-bottom > a {
-    font-size: 9px;
+    font-size: 12px;
     gap: 9px;
   }
   .social-proof {
@@ -2699,9 +2716,6 @@ textarea {
   .logo-worklab {
     font-size: 19px;
   }
-  .hero h1 {
-    font-size: 54px;
-  }
   .hero-art {
     height: 411px;
     margin-top: 33px;
@@ -2771,12 +2785,6 @@ textarea {
   .service-card p {
     font-size: 10.5px;
   }
-  .hero-actions {
-    gap: 21px;
-  }
-  .hero-note {
-    font-size: 8px;
-  }
   .contact-layout h2 {
     font-size: 44px;
   }
@@ -2795,6 +2803,23 @@ textarea {
   box-shadow: 0 5px 24px #0f234225;
 }
 @media (max-width: 639px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-actions .button,
+  .hero-actions .text-button {
+    width: 100%;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .hero-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hero-art .art-caption {
+    display: none;
+  }
   .site-header .button-small {
     display: none;
   }

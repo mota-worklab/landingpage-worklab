@@ -217,7 +217,7 @@ export default function Hero() {
             </span>
           </h1>
           <p>
-            <br className="hidden sm:block" /> Do primeiro rascunho ao software
+            Do primeiro rascunho ao software
             rodando<br className="hidden xl:block" /> com engenharia, parceria
             e zero enrolação.
           </p>
