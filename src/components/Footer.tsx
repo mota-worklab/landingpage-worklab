@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Logo } from "./ui";
+import ContactChannels from "./ContactChannels";
 
 export default function Footer() {
   return (
@@ -42,6 +43,7 @@ export default function Footer() {
               Fale com a gente
               <ArrowUpRight size={17} />
             </a>
+            <ContactChannels />
           </div>
         </div>
         <div className="footer-bottom">

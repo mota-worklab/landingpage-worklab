@@ -37,7 +37,7 @@ Marcas, projetos, métricas dos projetos e depoimentos são exemplos explicitame
 
 O formulário é **demonstrativo**: valida os campos e mostra um aviso, sem enviar nem armazenar dados. Para receber leads, conecte `onSubmit` em `src/components/Contact.tsx` a um backend ou serviço de formulários. Adicione estados de envio, erro e sucesso real e uma política de privacidade compatível com a integração escolhida.
 
-E-mail, WhatsApp e perfis sociais não foram inventados. Ao definir os canais oficiais, inclua-os em `Footer.tsx` e `Contact.tsx`.
+WhatsApp **(75) 99891-5461** e Instagram **@motaworklab** estão disponíveis na seção de contato e no rodapé. Os links são centralizados em `src/components/ContactChannels.tsx`.
 
 Antes de publicar, configure o domínio definitivo, URL canônica e `og:url` em `index.html`; use a URL absoluta de `public/social-card.png` (1200 × 630) em `og:image` para compatibilidade com redes sociais.
 

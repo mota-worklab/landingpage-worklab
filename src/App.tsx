@@ -19,7 +19,7 @@ export default function App() {
       <Navbar />
       <main id="main">
         <Hero />
-        <SocialProof />
+        {/* <SocialProof /> */}
         <Services />
         <Process />
         <Projects />

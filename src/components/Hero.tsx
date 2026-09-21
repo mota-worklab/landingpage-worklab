@@ -205,19 +205,18 @@ export default function Hero() {
             <span /> Fábrica de software. Parceiro de verdade.
           </div>
           <h1>
-            Sua ideia.
+            Transformamos.
             <br />
-            Nosso próximo
+            ideias em
             <br />
             <span className="hero-highlight">
-              deploy.
+              software.
               <svg viewBox="0 0 250 18" aria-hidden="true">
                 <path d="M3 12Q114 -1 246 8M17 17Q121 6 211 13" />
               </svg>
             </span>
           </h1>
           <p>
-            Transformamos ideias em produtos digitais.
             <br className="hidden sm:block" /> Do primeiro rascunho ao software
             rodando<br className="hidden xl:block" /> com engenharia, parceria
             e zero enrolação.

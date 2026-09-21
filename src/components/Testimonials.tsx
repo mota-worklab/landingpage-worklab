@@ -5,21 +5,21 @@ const testimonials = [
   {
     text: "“A sensação é de ter um time de tecnologia dentro da empresa. Da primeira conversa à entrega, tudo muito claro e próximo.”",
     name: "Marina Oliveira",
-    role: "Fundadora · startup de serviços",
+    role: "",
     initials: "MO",
     color: "avatar-peach",
   },
   {
     text: "“O que era uma operação cheia de planilhas virou um sistema simples de usar. Finalmente conseguimos focar no que faz o negócio crescer.”",
     name: "Rafael Costa",
-    role: "Diretor de operações · PME",
+    role: "",
     initials: "RC",
     color: "avatar-blue",
   },
   {
     text: "“Não foi só executar o que pedimos. Foi entender o problema, questionar e chegar com uma solução melhor. Essa parceria faz diferença.”",
     name: "Julia Santos",
-    role: "Product Manager · produto digital",
+    role: "",
     initials: "JS",
     color: "avatar-purple",
   },
@@ -39,11 +39,7 @@ export default function Testimonials() {
                 <span className="text-muted-heading">Boas relações ficam.</span>
               </h2>
             </div>
-            <p className="testimonial-disclaimer">
-              Depoimentos fictícios para demonstração.
-              <br />
-              Este espaço vai receber histórias reais.
-            </p>
+            
           </div>
         </Reveal>
         <div className="testimonials-grid">

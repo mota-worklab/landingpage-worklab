@@ -8,6 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import { Eyebrow, Reveal } from "./ui";
+import ContactChannels from "./ContactChannels";
 
 const serviceOptions = [
   ["web", "Aplicação Web"],
@@ -71,6 +72,7 @@ export default function Contact() {
               <Clock3 size={18} /> Sem compromisso. Sem papo complicado.
             </span>
           </div>
+          <ContactChannels />
           <div className="contact-signature">
             <span className="signature-symbol">
               <img
@@ -152,9 +154,6 @@ export default function Contact() {
               Vamos conversar
               <ArrowUpRight size={18} />
             </button>
-            <p className="form-note">
-              Formulário demonstrativo. Nenhum dado será enviado ou armazenado.
-            </p>
             {submitted && (
               <div role="status" className="form-success">
                 <CheckCircle2 size={21} />
@@ -162,7 +161,7 @@ export default function Contact() {
                   <strong>Tudo certo com o preenchimento!</strong>
                   <p>
                     Esta é uma demonstração. Sua mensagem não foi enviada. O
-                    canal de contato será disponibilizado em breve.
+                    contato pode ser feito pelo WhatsApp disponível nesta seção.
                   </p>
                 </div>
                 <button

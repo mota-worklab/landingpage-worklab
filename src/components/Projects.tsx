@@ -3,26 +3,31 @@ import { Eyebrow, Reveal } from "./ui";
 
 const projects = [
   {
-    name: "Orbit Finance",
-    type: "PLATAFORMA WEB · FINTECH",
-    description: "Uma visão simples para uma operação financeira complexa.",
-    metric: "−40%",
-    result: "de tempo em tarefas operacionais",
-    image: "/project-orbit.svg",
-    className: "project-blue",
-    alt: "Conceito de dashboard financeiro Orbit com receitas e gráfico de evolução",
-    service: "web",
+    name: "B. Leal Produções",
+    type: "LANDING PAGE · EVENTOS",
+    description: "Uma vitrine para serviços de iluminação, estrutura e produção de eventos, com acesso direto ao orçamento.",
+    image: "/bleal-foto.png",
+    alt: "Landing page da B. Leal Produções com identidade visual escura e destaque para produção de eventos",
+    width: 1899,
+    height: 900,
   },
   {
-    name: "Move App",
-    type: "APLICATIVO MOBILE · WELLNESS",
-    description: "Um incentivo diário para colocar o bem-estar em movimento.",
-    metric: "3×",
-    result: "mais engajamento na jornada",
-    image: "/project-move.svg",
-    className: "project-purple",
-    alt: "Conceito de aplicativo Move com planos de treino e acompanhamento de atividade",
-    service: "mobile",
+    name: "Expresso Petrolina",
+    type: "LANDING PAGE · TRANSPORTES",
+    description: "Serviços, frota e filiais em uma página que apresenta a transportadora e facilita a solicitação de cotações.",
+    image: "/expresso-img.png",
+    alt: "Landing page da Expresso Petrolina com caminhões da frota e botão para solicitar cotação",
+    width: 1838,
+    height: 869,
+  },
+  {
+    name: "HM7",
+    type: "LANDING PAGE · LOGÍSTICA",
+    description: "Uma apresentação direta da operação logística, conectando quem precisa transportar à equipe comercial.",
+    image: "/hero-hm7.png",
+    alt: "Landing page da HM7 com caminhão na estrada e chamada para conhecer os serviços de logística",
+    width: 1904,
+    height: 896,
   },
 ];
 
@@ -43,8 +48,7 @@ export default function Projects() {
               </h2>
             </div>
             <div>
-              <p>Um pouco do que podemos construir juntos.</p>
-          
+              <p>Landing pages que desenvolvemos para nossos clientes.</p>
             </div>
           </div>
         </Reveal>
@@ -52,20 +56,20 @@ export default function Projects() {
           {projects.map((project) => (
             <Reveal key={project.name}>
               <article className="project-card">
-                <div className={`project-visual ${project.className}`}>
-                  <span className="project-pill">PROJETO CONCEITO</span>
+                <div className="project-visual">
                   <img
                     src={project.image}
                     alt={project.alt}
                     loading="lazy"
-                    width="640"
-                    height="440"
+                    width={project.width}
+                    height={project.height}
+                    decoding="async"
                   />
                 </div>
                 <div className="project-info">
                   <span className="project-category">{project.type}</span>
                   <a
-                    href={`#contato?servico=${project.service}`}
+                    href="#contato?servico=landing"
                     className="project-title"
                     aria-label={`Conversar sobre um projeto como ${project.name}`}
                   >
@@ -75,12 +79,6 @@ export default function Projects() {
                     </span>
                   </a>
                   <p>{project.description}</p>
-                  <div className="project-result">
-                    <strong>{project.metric}</strong>
-                    <span>
-                      {project.result}
-                    </span>
-                  </div>
                 </div>
               </article>
             </Reveal>
