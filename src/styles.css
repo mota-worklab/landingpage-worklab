@@ -1478,6 +1478,23 @@ h2 {
   gap: 85px;
   align-items: center;
 }
+.contact-layout-single {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 620px;
+  margin-inline: auto;
+  text-align: center;
+}
+.contact-layout-single .contact-benefits {
+  align-items: center;
+}
+.contact-layout-single .contact-channels {
+  max-width: 420px;
+  margin-inline: auto;
+}
+.contact-layout-single .contact-signature {
+  justify-content: center;
+  text-align: left;
+}
 .contact-layout > .reveal,
 .footer-top > div {
   min-width: 0;
@@ -1533,13 +1550,22 @@ h2 {
   display: flex;
   align-items: center;
   gap: 12px;
-  min-height: 44px;
+  min-height: 56px;
   width: 100%;
   min-width: 0;
   max-width: 100%;
+  padding: 14px 18px;
+  border: 1px solid #cbd5e5;
+  border-radius: 13px;
+  background: #fafbfc;
   color: inherit;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.contact-channels > a:hover {
+  border-color: #88a9db;
+  transform: translateY(-2px);
 }
 .contact-channels svg {
   flex-shrink: 0;
