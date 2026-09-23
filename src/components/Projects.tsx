@@ -1,5 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
-import { Eyebrow, Reveal } from "./ui";
+import { Eyebrow, Reveal, spotlightMove } from "./ui";
 
 const projects = [
   {
@@ -55,7 +55,7 @@ export default function Projects() {
         <div className="projects-grid">
           {projects.map((project) => (
             <Reveal key={project.name}>
-              <article className="project-card">
+              <article className="project-card" onMouseMove={spotlightMove}>
                 <div className="project-visual">
                   <img
                     src={project.image}

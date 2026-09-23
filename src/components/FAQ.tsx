@@ -1,7 +1,7 @@
 import { ArrowUpRight, Plus } from "lucide-react";
 import { Eyebrow, Reveal } from "./ui";
 
-const questions = [
+export const questions = [
   [
     "Quanto tempo leva para desenvolver meu projeto?",
     "Depende do escopo e das integrações. Uma landing page costuma ser mais rápida do que um aplicativo ou sistema completo. Depois da descoberta, você recebe um cronograma com etapas, entregas e dependências antes de decidir.",

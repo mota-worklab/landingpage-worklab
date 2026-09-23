@@ -5,7 +5,7 @@ import {
   MousePointer2,
   Blocks,
 } from "lucide-react";
-import { Eyebrow, Reveal } from "./ui";
+import { Eyebrow, Reveal, spotlightMove } from "./ui";
 
 const services = [
   {
@@ -69,7 +69,7 @@ export default function Services() {
           {services.map(
             ({ icon: Icon, title, description, tags, value }, index) => (
               <Reveal key={title}>
-                <article className="service-card">
+                <article className="service-card" onMouseMove={spotlightMove}>
                   <div className="flex items-start justify-between">
                     <span className="service-icon">
                       <Icon size={25} strokeWidth={1.6} />
